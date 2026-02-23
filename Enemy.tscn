@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1eq8rjvwacc4"]
+
+[ext_resource type="Script" uid="uid://mvckeelh1yb4" path="res://Enemy.cs" id="1_s7bn3"]
+[ext_resource type="PackedScene" uid="uid://bicorb7we351t" path="res://art/mob.glb" id="1_tt7e2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s7bn3"]
+size = Vector3(2.235, 1.31, 3.285)
+
+[node name="enemy" type="CharacterBody3D"]
+collision_layer = 4
+script = ExtResource("1_s7bn3")
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="enemy" parent="Body" instance=ExtResource("1_tt7e2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33762205, 0.16424882)
+shape = SubResource("BoxShape3D_s7bn3")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="destroy"]

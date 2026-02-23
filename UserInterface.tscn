@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://by62gm2oqvnl"]
+
+[ext_resource type="Script" uid="uid://b1sk0ypnwufat" path="res://UserInterface.cs" id="1_mf2t3"]
+
+[node name="User Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mf2t3")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 512.0
+offset_top = -1.0
+offset_right = 633.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Score : 0"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 213.0
+offset_right = 647.0
+offset_bottom = 276.0
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[connection signal="timeout" from="Timer" to="." method="score"]
+[connection signal="pressed" from="Button" to="." method="start"]

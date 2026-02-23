@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccwpika7uimof"]
+
+[ext_resource type="PackedScene" uid="uid://dfhyl5y4smq70" path="res://Ground.tscn" id="1_3mqji"]
+[ext_resource type="Script" uid="uid://2d2vexe4gpfl" path="res://MainScene.cs" id="1_rpqi1"]
+[ext_resource type="PackedScene" uid="uid://d1eq8rjvwacc4" path="res://Enemy.tscn" id="2_uxrcv"]
+[ext_resource type="PackedScene" uid="uid://dcfyx3omcemb5" path="res://Player.tscn" id="2_x4av3"]
+[ext_resource type="PackedScene" uid="uid://by62gm2oqvnl" path="res://UserInterface.tscn" id="5_rf2cd"]
+
+[node name="Main Scene" type="Node3D"]
+script = ExtResource("1_rpqi1")
+originalEnemy = ExtResource("2_uxrcv")
+
+[node name="Ground" parent="." instance=ExtResource("1_3mqji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.42261824, 0.9063078, 0, -0.9063078, 0.42261824, -0.081, 9.81, 3.855)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_x4av3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8531742, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9998477, 7.628689e-10, -0.017452406, 0.017452406, -4.370473e-08, 0.9998477, 0, -1, -4.3711392e-08, -0.08068323, 9.248907, 8.555538)
+shadow_enabled = true
+
+[node name="User Interface" parent="." instance=ExtResource("5_rf2cd")]
+
+[node name="EnemyTimer" type="Timer" parent="User Interface"]
+
+[connection signal="timeout" from="User Interface/EnemyTimer" to="." method="createClone"]
